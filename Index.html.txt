@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>To My Forever | 2026 Birthday</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;500;800&family=Playfair+Display:ital,wght@0,700;1,700&display=swap" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+
+    <style>
+        :root {
+            --bg: #050505;
+            --accent: #ff4d6d; /* Deep Romantic Rose */
+            --gold: #d4af37;
+            --glass: rgba(255, 255, 255, 0.03);
+            --border: rgba(255, 255, 255, 0.1);
+            --text: #ffffff;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { background: var(--bg); color: var(--text); font-family: 'Inter', sans-serif; overflow-x: hidden; }
+
+        /* --- Romantic Particle Canvas --- */
+        #canvas { position: fixed; top: 0; left: 0; z-index: -1; }
+
+        /* --- 2026 Glass Music Player --- */
+        .music-player {
+            position: fixed; top: 20px; right: 20px;
+            z-index: 1000; background: var(--glass);
+            backdrop-filter: blur(15px); border: 1px solid var(--border);
+            padding: 12px 20px; border-radius: 50px;
+            display: flex; align-items: center; gap: 12px;
+            cursor: pointer; transition: all 0.3s ease;
+        }
+        .music-player:hover { border-color: var(--accent); box-shadow: 0 0 15px rgba(255, 77, 109, 0.3); }
+        .pulse { animation: pulse 2s infinite; color: var(--accent); }
+        @keyframes pulse { 0% { opacity: 0.4; } 50% { opacity: 1; } 100% { opacity: 0.4; } }
+
+        /* --- Sections --- */
+        section { min-height: 100vh; display: flex; align-items: center; justify-content: center; padding: 20px; position: relative; }
+        .glass-card {
+            background: var(--glass); backdrop-filter: blur(30px);
+            border: 1px solid var(--border); border-radius: 40px;
+            padding: 5rem 3rem; text-align: center; max-width: 900px;
+            box-shadow: 0 40px 100px rgba(0,0,0,0.8);
+        }
+
+        h1 { font-family: 'Playfair Display', serif; font-size: clamp(3rem, 10vw, 6.5rem); line-height: 1; margin-bottom: 2rem; background: linear-gradient(45deg, #fff, var(--accent)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+        p { font-size: 1.2rem; color: #aaa; max-width: 600px; margin: 0 auto; line-height: 1.8; font-weight: 300; }
+
+        .love-note { font-style: italic; color: var(--accent); margin-top: 2rem; display: block; font-size: 1.4rem; }
+        
+        /* --- Heart Animation Element --- */
+        .floating-heart { position: absolute; pointer-events: none; color: var(--accent); opacity: 0; z-index: 5; }
+
+        .btn-start {
+            margin-top: 3rem; padding: 1.2rem 3rem; border-radius: 100px;
+            border: none; background: linear-gradient(45deg, var(--accent), #ff8fa3);
+            color: white; font-weight: 600; letter-spacing: 2px;
+            cursor: pointer; transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+        .btn-start:hover { transform: scale(1.1) rotate(-2deg); box-shadow: 0 15px 30px rgba(255, 77, 109, 0.4); }
+
+    </style>
+</head>
+<body>
+
+    <div class="music-player" onclick="toggleMusic()">
+        <i data-lucide="music" id="music-icon" class="pulse"></i>
+        <span id="music-status" style="font-size: 0.8rem; font-weight: 600; letter-spacing: 1px;">PLAY OUR SONG</span>
+        <audio id="bg-music" loop>
+            <source src="https://www.bensound.com/bensound-music/bensound-love.mp3" type="audio/mpeg">
+        </audio>
+    </div>
+
+    <canvas id="canvas"></canvas>
+
+    <section id="hero">
+        <div class="glass-card">
+            <i data-lucide="heart" style="color:var(--accent); margin-bottom: 1rem;" size="48"></i>
+            <h1>Happy Birthday <br>To My Soulmate.</h1>
+            <p>In 2026, tech is faster, the world is louder, but my love for you is the quiet constant that makes everything beautiful.</p>
+            <span class="love-note">"To the man who owns my heart..."</span>
+            <button class="btn-start" onclick="startExperience()">OPEN YOUR HEART</button>
+        </div>
+    </section>
+
+    <section id="middle">
+        <div class="glass-card">
+            <h2 style="font-size: 3rem; font-family: 'Playfair Display'; margin-bottom: 2rem;">Every Second With You...</h2>
+            <div id="love-stats" style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px;">
+                <div style="padding: 20px; border-radius: 20px; background: rgba(255,255,255,0.02);">
+                    <h3 style="color: var(--accent); font-size: 2rem;">Infinite</h3>
+                    <p>Smiles shared</p>
+                </div>
+                <div style="padding: 20px; border-radius: 20px; background: rgba(255,255,255,0.02);">
+                    <h3 style="color: var(--accent); font-size: 2rem;">Endless</h3>
+                    <p>Adventures ahead</p>
+                </div>
+            </div>
+            <p style="margin-top: 3rem;">Move your mouse or touch the screen to see how my heart beats for you.</p>
+        </div>
+    </section>
+
+    <section id="final">
+        <div class="glass-card">
+            <i data-lucide="award" style="color:var(--gold); margin-bottom: 1rem;" size="40"></i>
+            <h1 style="font-size: 4rem;">Husband of the Year.</h1>
+            <p>Thank you for being you. Today is all about celebrating the best person I know.</p>
+            <div style="margin-top: 4rem; display: flex; justify-content: center; gap: 20px;">
+                <i data-lucide="heart" fill="currentColor"></i>
+                <i data-lucide="heart" fill="currentColor"></i>
+                <i data-lucide="heart" fill="currentColor"></i>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        lucide.createIcons();
+        gsap.registerPlugin(ScrollTrigger);
+
+        // Music Logic
+        const music = document.getElementById('bg-music');
+        const musicStatus = document.getElementById('music-status');
+        const musicIcon = document.getElementById('music-icon');
+
+        function toggleMusic() {
+            if (music.paused) {
+                music.play();
+                musicStatus.innerText = "MUSIC ON";
+                musicIcon.classList.add('pulse');
+            } else {
+                music.pause();
+                musicStatus.innerText = "PAUSED";
+                musicIcon.classList.remove('pulse');
+            }
+        }
+
+        function startExperience() {
+            window.scrollTo({ top: window.innerHeight, behavior: 'smooth' });
+            if(music.paused) toggleMusic();
+        }
+
+        // Heart Particle Engine
+        const canvas = document.getElementById('canvas');
+        const ctx = canvas.getContext('2d');
+        let hearts = [];
+
+        function init() {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+        }
+
+        class Heart {
+            constructor(x, y) {
+                this.x = x;
+                this.y = y;
+                this.size = Math.random() * 15 + 5;
+                this.speedY = Math.random() * -3 - 1;
+                this.speedX = (Math.random() - 0.5) * 2;
+                this.opacity = 1;
+            }
+            update() {
+                this.y += this.speedY;
+                this.x += this.speedX;
+                this.opacity -= 0.01;
+            }
+            draw() {
+                ctx.fillStyle = `rgba(255, 77, 109, ${this.opacity})`;
+                ctx.font = `${this.size}px serif`;
+                ctx.fillText('❤', this.x, this.y);
+            }
+        }
+
+        function handleHearts() {
+            for (let i = 0; i < hearts.length; i++) {
+                hearts[i].update();
+                hearts[i].draw();
+                if (hearts[i].opacity <= 0) {
+                    hearts.splice(i, 1);
+                    i--;
+                }
+            }
+        }
+
+        window.addEventListener('mousemove', (e) => {
+            if(Math.random() > 0.8) hearts.push(new Heart(e.clientX, e.clientY));
+        });
+
+        function animate() {
+            ctx.fillStyle = 'rgba(5, 5, 5, 0.2)';
+            ctx.fillRect(0, 0, canvas.width, canvas.height);
+            handleHearts();
+            requestAnimationFrame(animate);
+        }
+
+        window.addEventListener('resize', init);
+        init();
+        animate();
+
+        // GSAP Revelations
+        gsap.from(".glass-card", {
+            scrollTrigger: { trigger: ".glass-card", start: "top 80%" },
+            y: 100, opacity: 0, duration: 1.5, ease: "expo.out"
+        });
+    </script>
+</body>
+</html>
